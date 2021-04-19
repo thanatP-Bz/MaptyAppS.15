@@ -16,7 +16,7 @@ navigator.geolocation.getCurrentPosition (
     function(position) {
     const {latitude} = position.coords;
     const {longitude} = position.coords;
-    console.log(`https://www.google.com/maps/${latitude},${longitude}`);
+    console.log(`https://www.google.pt/maps/@${latitude},${longitude}`);
 }, 
 function() {
  alert('could not get your location');
