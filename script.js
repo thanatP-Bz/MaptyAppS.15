@@ -61,6 +61,7 @@ class App {
     #mapEvent
 
     constructor () {
+        this.workout = [];
         this._getPosition();
 
         form.addEventListener('submit', this._newWorkout.bind(this));
@@ -116,6 +117,7 @@ _showForm(mapE) {
      const type = inputType.value;
      const distance = +inputDistance.value;
      const duration = +inputDuration.value;
+     const {lat,lng} = this.#mapEvent.latlng;
 
      //check if data is valid
 
@@ -124,19 +126,19 @@ _showForm(mapE) {
          const cadence = +inputCadence.value;
          //check the value
         if(!validInputs(distance, duration, cadence) || !allPositive(distance, duration, cadence))
-         return alert('Input should be a positive numbers');
+        return alert('Input should be a positive numbers');
+
+        const workout = new Running([lat, lng], distance, duration, cadence);
      }
      //if workout cycling/ crete cycling object
      if(type === 'cycling') {
         const elevation = +inputElevation.value;
-        if(!validInputs(distance, duration, elevation) || !allPositive(distance, duration, elevation))
+        if(!validInputs(distance, duration, elevation) || !allPositive(distance, duration))
         return alert('Input should be a positive numbers');
     }
      //add new object to workout array
 
      //render on map as a maker
-     const {lat,lng} = this.#mapEvent.latlng;
-  
       L.marker([lat, lng])
       .addTo(this.#map)
       .bindPopup
