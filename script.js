@@ -105,8 +105,8 @@ _showForm(mapE) {
     }
     _newWorkout(e) {
     const validInputs = (...inputs) =>
-      inputs.every(inp => Number.isFinite(inp));
-    const allPositive = (...inputs) => inputs.every(inp => inp > 0);
+      inputs.every(inp => Number.isFinite(inp));///
+    const allPositive = (...inputs) => inputs.every(inp => inp >= 0);
 
     e.preventDefault();
 
@@ -114,6 +114,7 @@ _showForm(mapE) {
     const type = inputType.value;
     const distance = +inputDistance.value;
     const duration = +inputDuration.value;
+  
     const { lat, lng } = this.#mapEvent.latlng;
     let workout;
 
